@@ -4,12 +4,14 @@ import axios from 'axios';
 
 class Read extends Component
 {
-
+    // goes to this url to retrieve json data
     componentDidMount(){
-        axios.get('https://jsonblob.com/api/jsonblob/894944504570986496')
+        axios.get('http://localhost:4000/api/movies')
+        // callback function
         .then((response)=>{
-            this.setState({mymovies: response.data.movies})
+            this.setState({mymovies: response.data.mymovies})
         })
+        //if error occurs log to console
         .catch((error)=>{
             console.log(error);
         });
