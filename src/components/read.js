@@ -9,7 +9,7 @@ class Read extends Component
         axios.get('http://localhost:4000/api/movies')
         // callback function
         .then((response)=>{
-            this.setState({mymovies: response.data.mymovies})
+            this.setState({mymovies: response.data})
         })
         //if error occurs log to console
         .catch((error)=>{
