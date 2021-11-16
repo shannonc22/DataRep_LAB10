@@ -26,6 +26,7 @@ app.use(bodyParser.json())
 //mongoose
 const mongoose = require('mongoose');
 
+//connection string to mongo db
 const strConnection = 'mongodb+srv://admin:admin@cluster0.rmvvh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 main().catch(err => console.log(err));
@@ -71,6 +72,18 @@ app.get('/api/movies/:id',(req, res) => {
 
     movieModel.findById(req.params.id,(error,data)=>{
         res.json(data);
+    })
+})
+
+app.put('/api/movies/:id',(req, res)=>{
+    // console log to say updating
+console.log("Updating: " + req.param.id);
+
+movieModel.findByIdAndUpdate(req.params.id, req.body, {new:true},
+    // callback function
+    (err,data)=>{
+        // function that executes to send data
+        res.send(data);
     })
 })
 
