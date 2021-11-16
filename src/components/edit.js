@@ -25,7 +25,7 @@ class Edit extends Component {
             Year: this.state.Year,
             Poster: this.state.Poster
         }
-
+        //brings back response and passes up new movie
         axios.put('http://localhost:4000/api/movies/' + this.state._id, NewMovie)
         .then((response)=>{console.log(response)})
         .catch();
@@ -46,7 +46,7 @@ class Edit extends Component {
             Poster:''
         });
     }
-    // makes https request and pulls back data
+    // makes https request and pulls back data - id identifies the movie
     componentDidMount(){
         axios.get('http://localhost:4000/api/movies/' + this.props.match.params.id)
         // callback function
