@@ -16,9 +16,9 @@ class Edit extends Component {
     }
 
     handleSubmit(event) {
-        console.log("Name: " +this.state.Title+
-        " Year: " + this.state.Year +
-        "Poster: " + this.state.Poster);
+        console.log("Name: " + this.state.Title +
+            " Year: " + this.state.Year +
+            "Poster: " + this.state.Poster);
         // create new movie
         const NewMovie = {
             Title: this.state.Title,
@@ -27,8 +27,8 @@ class Edit extends Component {
         }
         //brings back response and passes up new movie
         axios.put('http://localhost:4000/api/movies/' + this.state._id, NewMovie)
-        .then((response)=>{console.log(response)})
-        .catch();
+            .then((response) => { console.log(response) })
+            .catch();
         // // post request to this url
         // axios.post('http://localhost:4000/api/movies', NewMovie)
         // .then((response)=>{
@@ -41,24 +41,24 @@ class Edit extends Component {
 
         event.preventDefault();
         this.setState({
-            Title:'',
-            Year:'',
-            Poster:''
+            Title: '',
+            Year: '',
+            Poster: ''
         });
     }
     // makes https request and pulls back data - id identifies the movie
-    componentDidMount(){
+    componentDidMount() {
         axios.get('http://localhost:4000/api/movies/' + this.props.match.params.id)
-        // callback function
-        .then((response)=>{
-            this.setState({
-                Title:response.data.Title,
-                Year:response.data.Year,
-                Poster:response.data.Poster,
-                _id:response.data._id
+            // callback function
+            .then((response) => {
+                this.setState({
+                    Title: response.data.Title,
+                    Year: response.data.Year,
+                    Poster: response.data.Poster,
+                    _id: response.data._id
+                })
             })
-        })
-        .catch();
+            .catch();
     }
 
     onChangeMovieName(event) {
@@ -71,7 +71,7 @@ class Edit extends Component {
             Year: event.target.value
         })
     }
-    onChangeMoviePoster(event){
+    onChangeMoviePoster(event) {
         this.setState({
             Poster: event.target.value
         })
