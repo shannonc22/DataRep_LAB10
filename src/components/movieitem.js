@@ -25,7 +25,7 @@ class MovieItem extends Component {
     render() {
         return (
             <div>
-                {/* some comments  */}
+                {/* cards for movies  */}
                 <Card>
                     <Card.Header>{this.props.movie.Title}</Card.Header>
                     <Card.Body>

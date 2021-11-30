@@ -5,16 +5,23 @@ const port = 4000
 //body parser
 const bodyParser = require('body-parser')
 
+//navigates path
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')));
+
+
+
 // allows to make request from outside domain
-const cors = require('cors');
-app.use(cors());
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// const cors = require('cors');
+// app.use(cors());
+// app.use(function (req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+//     res.header("Access-Control-Allow-Headers",
+//         "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
 
 
 // parse application/x-www-form-urlencoded
@@ -111,6 +118,10 @@ app.delete('/api/movies/:id', (req, res) => {
         })
 })
 
+//handles requests that dont match previous ones 
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/../build/index.html'));
+    });
 
 // port
 app.listen(port, () => {
